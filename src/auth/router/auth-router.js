@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const authRedirectHandler = require('../handlers/auth-redirect-handler')
+const authRedirectHandler = require('../handlers/redirect')
 const authRouter = Router()
 
 authRouter.get('/', authRedirectHandler)

@@ -1,12 +1,12 @@
 const authRedirectHandler = require('./auth-redirect-handler')
-const generateID = require('../../utils/generate-id')
-const stringify = require('../../utils/stringify')
-const environment = require('../../config/environment')
+const generateID = require('../../../utils/generate-id')
+const stringify = require('../../../utils/stringify')
+const environment = require('../../../config/environment')
 const responseMock = require('@mocks/response-mock')
 
-jest.mock('../../utils/generate-id')
-jest.mock('../../utils/stringify')
-jest.mock('../../config/environment', () => require('@mocks/environment-mock'))
+jest.mock('../../../utils/generate-id')
+jest.mock('../../../utils/stringify')
+jest.mock('../../../config/environment', () => require('@mocks/environment-mock'))
 
 describe('Auth Redirect Handler', () => {
   const mockGenerateID = () => {
