@@ -10,7 +10,13 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.4",
+<<<<<<< HEAD
     "get-image-colors": "^1.8.1"
+=======
+    "get-image-colors": "^1.8.1",
+    "nanoid": "^2.0.0",
+    "querystring": "^0.2.0"
+>>>>>>> 196d9d1... Install nanoid
   },
   "devDependencies": {
     "jest": "^23.6.0",
