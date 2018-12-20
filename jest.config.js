@@ -1,5 +1,7 @@
 module.exports = {
-  coverageDirectory: 'coverage',
+  collectCoverage: true,
+  collectCoverageFrom: ['<rootDir>/src/**/!(server).js'],
+  coverageDirectory: './coverage/',
   coveragePathIgnorePatterns: ['/node_modules/'],
   coverageReporters: ['html'],
   coverageThreshold: {
@@ -11,7 +13,7 @@ module.exports = {
     }
   },
   moduleNameMapper: {
-    '@mocks\/(.*)$': `<rootDir>/src/mocks/$1`
+    '@mocks/(.*)$': `<rootDir>/src/mocks/$1`
   },
   testEnvironment: 'node'
 }
