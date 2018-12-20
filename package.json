@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/server.js",
     "test": "jest"
   },
   "author": "@fernahh",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
 <<<<<<< HEAD
     "get-image-colors": "^1.8.1"
