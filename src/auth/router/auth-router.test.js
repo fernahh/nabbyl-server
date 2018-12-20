@@ -1,4 +1,4 @@
-const authRedirectHandler = require('../handlers/auth-redirect-handler')
+const authRedirectHandler = require('../handlers/redirect')
 const authRouter = require('./auth-router')
 
 jest.mock('express', () => require('@mocks/express-mock'))

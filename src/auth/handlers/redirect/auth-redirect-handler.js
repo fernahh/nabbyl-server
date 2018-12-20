@@ -1,6 +1,6 @@
-const generateID = require('../../utils/generate-id')
-const stringify = require('../../utils/stringify')
-const { spotify } = require('../../config/environment')
+const generateID = require('../../../utils/generate-id')
+const stringify = require('../../../utils/stringify')
+const { spotify } = require('../../../config/environment')
 
 module.exports = (request, response) => {
   const stateValue = generateID()
