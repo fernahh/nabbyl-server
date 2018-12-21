@@ -6,7 +6,9 @@ const responseMock = require('@mocks/response-mock')
 
 jest.mock('../../../utils/generate-id')
 jest.mock('../../../utils/stringify')
-jest.mock('../../../config/environment', () => require('@mocks/environment-mock'))
+jest.mock('../../../config/environment', () =>
+  require('@mocks/environment-mock')
+)
 
 describe('Auth Redirect Handler', () => {
   const mockGenerateID = () => {
@@ -35,7 +37,7 @@ describe('Auth Redirect Handler', () => {
       redirect_uri: 'nabil.com/callback/',
       state: 'abcdef'
     })
-    expect(responseMock.cookie).toBeCalledWith('some-key', 'abcdef')
+    expect(responseMock.cookie).toBeCalledWith('state-key', 'abcdef')
     expect(responseMock.redirect).toBeCalledWith('spotify.com?id=123')
   })
 })
