@@ -17,9 +17,8 @@ describe('HTTP', () => {
 
   it('be hable to do a get request', () => {
     const url = 'http://nabil.com'
-    const params = { foo: 'bar' }
     const config = { headers: 'some-header' }
-    get(url, params, config)
-    expect(axios.get).toBeCalledWith(url, params, config)
+    get(url, config)
+    expect(axios.get).toBeCalledWith(url, config)
   })
 })
