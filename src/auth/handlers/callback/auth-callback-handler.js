@@ -1,23 +1,33 @@
-const { spotify } = require('../../../config/environment')
 const authTokenHandler = require('../token')
+const { spotify } = require('../../../config/environment')
+const { post } = require('../../../utils/http')
+const stringify = require('../../../utils/stringify')
 
-module.exports = (request, response) => {
-  request.clearCookie(spotify.stateKey)
-  request.post(buildAuthOptions(request), authTokenHandler)
+module.exports = (req, res) => {
+  const { stateKey, authorizeTokenUrl } = spotify
+  const params = buildParams(req)
+  const config = buildConfig()
+
+  res.clearCookie(stateKey)
+
+  post(authorizeTokenUrl, params, config).then(response =>
+    authTokenHandler(res, response.data)
+  )
 }
 
-function buildAuthOptions(request) {
+function buildParams(request) {
+  return stringify({
+    code: request.query.code,
+    redirect_uri: spotify.authorizeCallbackUrl,
+    grant_type: 'authorization_code'
+  })
+}
+
+function buildConfig() {
   return {
-    url: spotify.authorizeTokenUrl,
-    form: {
-      code: request.query.code,
-      redirect_uri: spotify.authorizeCallbackUrl,
-      grant_type: 'authorization_code'
-    },
     headers: {
       Authorization: buildAuthorizationHeader()
-    },
-    json: true
+    }
   }
 }
 
