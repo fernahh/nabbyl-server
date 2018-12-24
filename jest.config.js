@@ -2,7 +2,7 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ['<rootDir>/src/**/!(server).js'],
   coverageDirectory: './coverage/',
-  coveragePathIgnorePatterns: ['/node_modules/'],
+  coveragePathIgnorePatterns: ['/node_modules/', '<rootDir>/src/mocks/'],
   coverageReporters: ['html'],
   coverageThreshold: {
     global: {
