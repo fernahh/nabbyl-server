@@ -9,7 +9,7 @@ describe('Generate ID', () => {
   }
 
   it('get some random value', () => {
-    mockNanoid();
+    mockNanoid()
     const id = generateID()
     expect(id).toEqual('abcdef')
     expect(nanoid).toBeCalled()
