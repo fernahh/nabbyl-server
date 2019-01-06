@@ -1,8 +1,8 @@
 {
-  "name": "nabil",
+  "name": "nabil-server",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "start": "node src/server.js",
     "test": "jest",
