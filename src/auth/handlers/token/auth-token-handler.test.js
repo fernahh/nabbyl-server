@@ -1,5 +1,6 @@
 const authTokenHandler = require('./auth-token-handler')
 const stringify = require('../../../utils/stringify')
+const { webClient } = require('../../../config/environment.js')
 const requestMock = require('@mocks/request-mock')
 
 jest.mock('../../../utils/stringify')
@@ -27,7 +28,7 @@ describe('Auth Token Handler', () => {
 
   it('redirect with tokens', () => {
     expect(requestMock.redirect).toBeCalledWith(
-      '/#access_token=abcdef&refresh_token=123456'
+      `${webClient.redirectUrl}/#access_token=abcdef&refresh_token=123456`
     )
   })
 })
