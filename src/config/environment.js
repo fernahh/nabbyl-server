@@ -11,5 +11,9 @@ module.exports = {
     clientID: process.env.SPOTIFY_CLIENT_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     stateKey: process.env.SPOTIFY_STATE_KEY
+  },
+  webClient: {
+    redirectUrl: process.env.WEB_CLIENT_REDIRECT_URL,
+    url: process.env.WEB_CLIENT_URL
   }
 }
