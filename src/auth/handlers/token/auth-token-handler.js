@@ -1,7 +1,8 @@
+const { webClient } = require('../../../config/environment.js')
 const stringify = require('../../../utils/stringify')
 
 module.exports = (response, body) => {
-  response.redirect(`/#${buildParams(body)}`)
+  response.redirect(`${webClient.redirectUrl}/#${buildParams(body)}`)
 }
 
 function buildParams(body) {
