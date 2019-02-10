@@ -34,7 +34,7 @@ describe('Auth Redirect Handler', () => {
       response_type: 'code',
       client_id: 'some-client-id',
       scope: 'user-read-private user-read-email',
-      redirect_uri: 'nabil.com/callback/',
+      redirect_uri: 'nabbyl.com/callback/',
       state: 'abcdef'
     })
     expect(responseMock.cookie).toBeCalledWith('state-key', 'abcdef')
