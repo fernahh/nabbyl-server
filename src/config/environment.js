@@ -5,6 +5,7 @@ dotenv.config()
 module.exports = {
   port: process.env.PORT,
   spotify: {
+    apiUrl: process.env.SPOTIFY_API_URL,
     authorizeCallbackUrl: process.env.SPOTIFY_AUTHORIZE_CALLBACK_URL,
     authorizeTokenUrl: process.env.SPOTIFY_AUTHORIZE_TOKEN_URL,
     authorizeUrl: process.env.SPOTIFY_AUTHORIZE_URL,
