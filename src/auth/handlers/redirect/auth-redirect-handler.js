@@ -12,7 +12,7 @@ function buildParams(state) {
   return stringify({
     response_type: 'code',
     client_id: spotify.clientID,
-    scope: 'user-read-private user-read-email',
+    scope: 'user-read-private user-read-email user-library-read',
     redirect_uri: spotify.authorizeCallbackUrl,
     state
   })
