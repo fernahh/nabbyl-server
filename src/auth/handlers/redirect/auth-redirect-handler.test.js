@@ -33,7 +33,7 @@ describe('Auth Redirect Handler', () => {
     expect(stringify).toBeCalledWith({
       response_type: 'code',
       client_id: 'some-client-id',
-      scope: 'user-read-private user-read-email',
+      scope: 'user-read-private user-read-email user-library-read',
       redirect_uri: 'nabbyl.com/callback/',
       state: 'abcdef'
     })
