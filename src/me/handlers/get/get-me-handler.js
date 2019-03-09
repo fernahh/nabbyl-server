@@ -12,7 +12,7 @@ module.exports = (req, res) => {
 function buildHeaders(request) {
   return {
     headers: {
-      'Authorization': request.headers['authorization']
+      Authorization: request.headers['authorization']
     }
   }
 }

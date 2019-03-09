@@ -50,7 +50,7 @@ describe('Get Albums Handler', () => {
     const url = `${spotify.apiUrl}/me/albums/`
     const config = {
       headers: {
-        'Authorization': requestMock.headers['authorization']
+        Authorization: requestMock.headers['authorization']
       }
     }
     expect(get).toBeCalledWith(url, config)

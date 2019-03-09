@@ -6,15 +6,21 @@ module.exports = (req, res) => {
   const url = `${spotify.apiUrl}/me/albums/`
 
   get(url, buildHeaders(req)).then(response => {
-    const albums = response.data.items.map(async (item) => { 
-      const imageUrl = item.album.images[0].url
-      const colors = await getColors(imageUrl)
-      item.album.colors = colors.map(getHexadecimalValue)
-      return item
-    })
-
-    Promise.all(albums).then(albumsWithColors => res.json(albumsWithColors))
+    const { items } = response.data
+    const albums = items.map(addColorPalette)
+    Promise.all(albums).then(albumsWithColorPalette =>
+      res.json(albumsWithColorPalette)
+    )
   })
+}
+
+async function addColorPalette(item) {
+  const { url } = item.album.images[0]
+  const palette = await getColors(url)
+  const colors = palette.map(getHexadecimalValue)
+  item.album.colors = colors
+
+  return item
 }
 
 function getHexadecimalValue(color) {
@@ -24,7 +30,7 @@ function getHexadecimalValue(color) {
 function buildHeaders(request) {
   return {
     headers: {
-      'Authorization': request.headers['authorization']
+      Authorization: request.headers['authorization']
     }
   }
 }
