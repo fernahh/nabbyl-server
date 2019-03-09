@@ -7,7 +7,7 @@ const meRouter = require('./me/router/me-router')
 
 const app = express()
 
-app.use(cors({ origin: webClient.url }))
+app.use(cors({ origin: webClient.url, exposedHeaders: ['Offset'] }))
 app.use('/albums', albumsRouter)
 app.use('/auth', authRouter)
 app.use('/me', meRouter)
