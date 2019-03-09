@@ -1,4 +1,3 @@
-const getColors = require('get-image-colors')
 const getAlbumsHandler = require('./get-albums-handler')
 const { get } = require('../../../utils/http')
 const { spotify } = require('../../../config/environment')
@@ -21,7 +20,8 @@ describe('Get Albums Handler', () => {
             images: [{ url: 'some-url.com' }]
           }
         }
-      ]
+      ],
+      next: `${spotify.apiUrl}/me/albums?offset=0`
     }
   }
 
@@ -35,9 +35,12 @@ describe('Get Albums Handler', () => {
   }
 
   const mockRequest = () => {
-    requestMock.headers = {
-      Authorization: `Bearer some-token`
-    }
+    Object.assign(requestMock, {
+      query: { offset: 0 },
+      headers: {
+        Authorization: `Bearer some-token`
+      }
+    })
   }
 
   beforeEach(() => {
@@ -47,7 +50,7 @@ describe('Get Albums Handler', () => {
   })
 
   it('call the spotify albums endpoint', () => {
-    const url = `${spotify.apiUrl}/me/albums/`
+    const url = `${spotify.apiUrl}/me/albums?offset=0`
     const config = {
       headers: {
         Authorization: requestMock.headers['authorization']
@@ -65,5 +68,9 @@ describe('Get Albums Handler', () => {
         }
       }
     ])
+  })
+
+  it('set the offset header', () => {
+    expect(responseMock.set).toBeCalledWith('Offset', '0')
   })
 })
