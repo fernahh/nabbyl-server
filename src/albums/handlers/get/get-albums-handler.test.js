@@ -1,3 +1,4 @@
+const getColors = require('get-image-colors')
 const getAlbumsHandler = require('./get-albums-handler')
 const { get } = require('../../../utils/http')
 const { spotify } = require('../../../config/environment')
@@ -6,6 +7,7 @@ const responseMock = require('@mocks/response-mock')
 const requestMock = require('@mocks/request-mock')
 
 jest.mock('../../../utils/http')
+jest.mock('get-image-colors', () => require('@mocks/get-image-colors-mock'))
 jest.mock('../../../config/environment', () =>
   require('@mocks/environment-mock')
 )
@@ -13,7 +15,13 @@ jest.mock('../../../config/environment', () =>
 describe('Get Albums Handler', () => {
   const albumsResponseMock = {
     data: {
-      foo: 'bar'
+      items: [
+        {
+          album: {
+            images: [{ url: 'some-url.com' }]
+          }
+        }
+      ]
     }
   }
 
@@ -33,14 +41,29 @@ describe('Get Albums Handler', () => {
   }
 
   beforeEach(() => {
+    mockRequest()
     stubGet('success', albumsResponseMock)
     stubGetAlbumsHandler(requestMock, responseMock)
   })
 
-  it('send the albums response', () => {
+  it('call the spotify albums endpoint', () => {
     const url = `${spotify.apiUrl}/me/albums/`
-    const config = { headers: requestMock.headers }
+    const config = {
+      headers: {
+        'Authorization': requestMock.headers['authorization']
+      }
+    }
     expect(get).toBeCalledWith(url, config)
-    expect(responseMock.json).toBeCalledWith(albumsResponseMock.data)
+  })
+
+  it('get hexadecimal colors from album cover', () => {
+    expect(responseMock.json).toBeCalledWith([
+      {
+        album: {
+          images: [{ url: 'some-url.com' }],
+          colors: ['#fff', '#000']
+        }
+      }
+    ])
   })
 })
