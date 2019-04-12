@@ -1,13 +1,13 @@
 const getAlbumsHandler = require('./get-albums-handler')
 const { get } = require('../../../utils/http')
-const { spotify } = require('../../../config/environment')
+const { spotify } = require('../../../../config/environment')
 const promiseMock = require('@mocks/promise-mock')
 const responseMock = require('@mocks/response-mock')
 const requestMock = require('@mocks/request-mock')
 
 jest.mock('../../../utils/http')
 jest.mock('get-image-colors', () => require('@mocks/get-image-colors-mock'))
-jest.mock('../../../config/environment', () =>
+jest.mock('../../../../config/environment', () =>
   require('@mocks/environment-mock')
 )
 

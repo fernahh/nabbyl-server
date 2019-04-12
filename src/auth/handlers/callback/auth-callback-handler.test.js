@@ -1,6 +1,6 @@
 const authCallbackHandler = require('./auth-callback-handler')
 const authTokenHandler = require('../token')
-const { spotify } = require('../../../config/environment')
+const { spotify } = require('../../../../config/environment')
 const { post } = require('../../../utils/http')
 const stringify = require('../../../utils/stringify')
 const promiseMock = require('@mocks/promise-mock')
@@ -10,7 +10,7 @@ const responseMock = require('@mocks/response-mock')
 jest.mock('../token', () => jest.fn())
 jest.mock('../../../utils/http')
 jest.mock('../../../utils/stringify')
-jest.mock('../../../config/environment', () =>
+jest.mock('../../../../config/environment', () =>
   require('@mocks/environment-mock')
 )
 

@@ -1,6 +1,6 @@
 const authTokenHandler = require('./auth-token-handler')
 const stringify = require('../../../utils/stringify')
-const { webClient } = require('../../../config/environment.js')
+const { webClient } = require('../../../../config/environment.js')
 const requestMock = require('@mocks/request-mock')
 
 jest.mock('../../../utils/stringify')
