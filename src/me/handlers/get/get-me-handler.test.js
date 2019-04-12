@@ -1,12 +1,12 @@
 const getMeHandler = require('./get-me-handler')
 const { get } = require('../../../utils/http')
-const { spotify } = require('../../../config/environment')
+const { spotify } = require('../../../../config/environment')
 const promiseMock = require('@mocks/promise-mock')
 const responseMock = require('@mocks/response-mock')
 const requestMock = require('@mocks/request-mock')
 
 jest.mock('../../../utils/http')
-jest.mock('../../../config/environment', () =>
+jest.mock('../../../../config/environment', () =>
   require('@mocks/environment-mock')
 )
 

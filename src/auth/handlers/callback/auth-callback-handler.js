@@ -1,5 +1,5 @@
 const authTokenHandler = require('../token')
-const { spotify } = require('../../../config/environment')
+const { spotify } = require('../../../../config/environment')
 const { post } = require('../../../utils/http')
 const stringify = require('../../../utils/stringify')
 

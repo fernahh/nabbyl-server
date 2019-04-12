@@ -1,4 +1,4 @@
-const { webClient } = require('../../../config/environment.js')
+const { webClient } = require('../../../../config/environment.js')
 const stringify = require('../../../utils/stringify')
 
 module.exports = (response, body) => {

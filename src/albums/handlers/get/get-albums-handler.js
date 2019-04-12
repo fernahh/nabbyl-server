@@ -1,7 +1,7 @@
 const getColors = require('get-image-colors')
 const parseQueryString = require('../../../utils/parse-query-string')
 const { get } = require('../../../utils/http')
-const { spotify } = require('../../../config/environment')
+const { spotify } = require('../../../../config/environment')
 
 module.exports = (req, res) => {
   const { offset } = req.query

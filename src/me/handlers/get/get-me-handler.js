@@ -1,5 +1,5 @@
 const { get } = require('../../../utils/http')
-const { spotify } = require('../../../config/environment')
+const { spotify } = require('../../../../config/environment')
 
 module.exports = (req, res) => {
   const url = `${spotify.apiUrl}/me/`
