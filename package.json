@@ -1,7 +1,7 @@
 {
   "name": "nabbyl-server",
   "version": "0.0.1",
-  "description": "",
+  "description": "The server API for [nabbyl.com](nabbyl.com)",
   "private": true,
   "scripts": {
     "start": "node src/server.js",
