@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server.js",
     "test": "jest",
-    "lint": "eslint ./src",
+    "lint": "eslint './src/**/*.js'",
     "check": "npm run lint && npm test"
   },
   "author": "@fernahh",
