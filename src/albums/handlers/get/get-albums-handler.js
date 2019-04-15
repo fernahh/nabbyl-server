@@ -8,15 +8,22 @@ module.exports = (req, res) => {
   const baseUrl = `${spotify.apiUrl}/me/albums?`
   const requestUrl = `${baseUrl}offset=${offset}`
 
-  get(requestUrl, buildHeaders(req)).then(response => {
-    const { items, next } = response.data
-    const albums = items.map(addColorPalette)
-    res.set('Offset', getOffset(next, baseUrl))
+  get(requestUrl, buildHeaders(req)).then(
+    response => {
+      const { items, next } = response.data
+      const albums = items.map(addColorPalette)
+      res.set('Offset', getOffset(next, baseUrl))
 
-    Promise.all(albums).then(albumsWithColorPalette =>
-      res.json(albumsWithColorPalette)
-    )
-  })
+      Promise.all(albums).then(albumsWithColorPalette =>
+        res.json(albumsWithColorPalette)
+      )
+    },
+    err => {
+      const { status, message } = err.response.data.error
+      res.status(status)
+      res.json({ message })
+    }
+  )
 }
 
 async function addColorPalette(item) {
