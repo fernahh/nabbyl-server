@@ -3,5 +3,6 @@ module.exports = {
   cookie: jest.fn(),
   json: jest.fn(),
   redirect: jest.fn(),
-  set: jest.fn()
+  set: jest.fn(),
+  status: jest.fn()
 }

@@ -45,8 +45,6 @@ describe('Get Albums Handler', () => {
 
   beforeEach(() => {
     mockRequest()
-    stubGet('success', albumsResponseMock)
-    stubGetAlbumsHandler(requestMock, responseMock)
   })
 
   it('call the spotify albums endpoint', () => {
@@ -56,10 +54,14 @@ describe('Get Albums Handler', () => {
         Authorization: requestMock.headers['authorization']
       }
     }
+    stubGet('success', albumsResponseMock)
+    stubGetAlbumsHandler(requestMock, responseMock)
     expect(get).toBeCalledWith(url, config)
   })
 
   it('get hexadecimal colors from album cover', () => {
+    stubGet('success', albumsResponseMock)
+    stubGetAlbumsHandler(requestMock, responseMock)
     expect(responseMock.json).toBeCalledWith([
       {
         album: {
@@ -71,6 +73,27 @@ describe('Get Albums Handler', () => {
   })
 
   it('set the offset header', () => {
+    stubGet('success', albumsResponseMock)
+    stubGetAlbumsHandler(requestMock, responseMock)
     expect(responseMock.set).toBeCalledWith('Offset', '0')
+  })
+
+  it('handle a error when spotify albums endpoint send a error', () => {
+    const err = {
+      response: {
+        data: {
+          error: {
+            status: 400,
+            message: 'some message'
+          }
+        }
+      }
+    }
+    stubGet('error', err)
+    stubGetAlbumsHandler(requestMock, responseMock)
+    expect(responseMock.status).toBeCalledWith(err.response.data.error.status)
+    expect(responseMock.json).toBeCalledWith({
+      message: err.response.data.error.message
+    })
   })
 })
