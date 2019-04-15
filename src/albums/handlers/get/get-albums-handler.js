@@ -40,8 +40,7 @@ function getHexadecimalValue(color) {
 }
 
 function getOffset(next, url) {
-  const params = parseQueryString(next.replace(url, ''))
-  return params.offset
+  return next ? parseQueryString(next.replace(url, '')).offset : null
 }
 
 function buildHeaders(request) {
