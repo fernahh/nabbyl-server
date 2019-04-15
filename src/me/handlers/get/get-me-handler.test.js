@@ -34,8 +34,6 @@ describe('Get Me Handler', () => {
 
   beforeEach(() => {
     mockRequest()
-    stubGet('success', meResponseMock)
-    stubGetMeHandler(requestMock, responseMock)
   })
 
   it('send the me response', () => {
@@ -45,7 +43,28 @@ describe('Get Me Handler', () => {
         Authorization: requestMock.headers['authorization']
       }
     }
+    stubGet('success', meResponseMock)
+    stubGetMeHandler(requestMock, responseMock)
     expect(get).toBeCalledWith(url, config)
     expect(responseMock.json).toBeCalledWith(meResponseMock.data)
+  })
+
+  it('handle a error when spotify albums endpoint send a error', () => {
+    const err = {
+      response: {
+        data: {
+          error: {
+            status: 400,
+            message: 'some message'
+          }
+        }
+      }
+    }
+    stubGet('error', err)
+    stubGetMeHandler(requestMock, responseMock)
+    expect(responseMock.status).toBeCalledWith(err.response.data.error.status)
+    expect(responseMock.json).toBeCalledWith({
+      message: err.response.data.error.message
+    })
   })
 })

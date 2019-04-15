@@ -19,7 +19,7 @@ describe('Get Albums Handler', () => {
           album: {
             images: [{ url: 'some-url.com' }]
           }
-        } 
+        }
       ],
       next: `${spotify.apiUrl}/me/albums?offset=0`
     }
