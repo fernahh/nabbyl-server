@@ -54,16 +54,19 @@ describe('Auth Callback Handler', () => {
 
   beforeEach(() => {
     mockRequest()
-    mockStringify()
-    stubPost('success', postResponseMock)
-    stubAuthCallbackHandler(requestMock, responseMock)
   })
 
   it('clear the state cookie', () => {
+    mockStringify()
+    stubPost('success', postResponseMock)
+    stubAuthCallbackHandler(requestMock, responseMock)
     expect(responseMock.clearCookie).toBeCalledWith('state-key')
   })
 
   it('send a request post to token URL with auth options', () => {
+    mockStringify()
+    stubPost('success', postResponseMock)
+    stubAuthCallbackHandler(requestMock, responseMock)
     const { authorizeTokenUrl, authorizeCallbackUrl } = spotify
     const params = 'id=123'
     const config = buildHeaders()
@@ -77,6 +80,28 @@ describe('Auth Callback Handler', () => {
   })
 
   it('run the auth token handler', () => {
+    mockStringify()
+    stubPost('success', postResponseMock)
+    stubAuthCallbackHandler(requestMock, responseMock)
     expect(authTokenHandler).toBeCalledWith(responseMock, postResponseMock.data)
+  })
+
+  it('handle a error when can not post an auth token', () => {
+    const err = {
+      response: {
+        data: {
+          error: {
+            status: 400,
+            message: 'some message'
+          }
+        }
+      }
+    }
+    stubPost('error', err)
+    stubAuthCallbackHandler(requestMock, responseMock)
+    expect(responseMock.status).toBeCalledWith(err.response.data.error.status)
+    expect(responseMock.json).toBeCalledWith({
+      message: err.response.data.error.message
+    })
   })
 })

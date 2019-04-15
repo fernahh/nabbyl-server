@@ -10,8 +10,15 @@ module.exports = (req, res) => {
 
   res.clearCookie(stateKey)
 
-  post(authorizeTokenUrl, params, config).then(response =>
-    authTokenHandler(res, response.data)
+  post(authorizeTokenUrl, params, config).then(
+    response => {
+      authTokenHandler(res, response.data)
+    },
+    err => {
+      const { status, message } = err.response.data.error
+      res.status(status)
+      res.json({ message })
+    }
   )
 }
 

@@ -49,7 +49,7 @@ describe('Get Me Handler', () => {
     expect(responseMock.json).toBeCalledWith(meResponseMock.data)
   })
 
-  it('handle a error when spotify albums endpoint send a error', () => {
+  it('handle a error when me endpoint send a error', () => {
     const err = {
       response: {
         data: {
