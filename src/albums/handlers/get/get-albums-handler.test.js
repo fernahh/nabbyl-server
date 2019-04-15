@@ -78,6 +78,24 @@ describe('Get Albums Handler', () => {
     expect(responseMock.set).toBeCalledWith('Offset', '0')
   })
 
+  it('set the offset header as null when there is not next page', () => {
+    const response = {
+      data: {
+        items: [
+          {
+            album: {
+              images: [{ url: 'some-url.com' }]
+            }
+          }
+        ],
+        next: null
+      }
+    }
+    stubGet('success', response)
+    stubGetAlbumsHandler(requestMock, responseMock)
+    expect(responseMock.set).toBeCalledWith('Offset', null)
+  })
+
   it('handle a error when spotify albums endpoint send a error', () => {
     const err = {
       response: {
