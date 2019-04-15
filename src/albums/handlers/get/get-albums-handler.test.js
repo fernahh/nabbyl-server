@@ -19,7 +19,7 @@ describe('Get Albums Handler', () => {
           album: {
             images: [{ url: 'some-url.com' }]
           }
-        }
+        } 
       ],
       next: `${spotify.apiUrl}/me/albums?offset=0`
     }
@@ -113,5 +113,13 @@ describe('Get Albums Handler', () => {
     expect(responseMock.json).toBeCalledWith({
       message: err.response.data.error.message
     })
+  })
+
+  it('handle a error when something is wrong on build success response', () => {
+    const response = null
+    stubGet('success', response)
+    stubGetAlbumsHandler(requestMock, responseMock)
+    expect(responseMock.status).toBeCalledWith(500)
+    expect(responseMock.json).toBeCalled()
   })
 })

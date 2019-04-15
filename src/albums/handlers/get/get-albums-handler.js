@@ -10,13 +10,17 @@ module.exports = (req, res) => {
 
   get(requestUrl, buildHeaders(req)).then(
     response => {
-      const { items, next } = response.data
-      const albums = items.map(addColorPalette)
-      res.set('Offset', getOffset(next, baseUrl))
-
-      Promise.all(albums).then(albumsWithColorPalette =>
-        res.json(albumsWithColorPalette)
-      )
+      try {
+        const { items, next } = response.data
+        const albums = items.map(addColorPalette)
+        res.set('Offset', getOffset(next, baseUrl))
+        Promise.all(albums).then(albumsWithColorPalette =>
+          res.json(albumsWithColorPalette)
+        )
+      } catch (error) {
+        res.status(500)
+        res.json({ message: error })
+      }
     },
     err => {
       const { status, message } = err.response.data.error
