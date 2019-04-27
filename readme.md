@@ -6,5 +6,5 @@
 
 1. Fork this repository to your own GitHub account and then clone it to your local device
 2. Install dependencies using NPM: `npm install`
-3. Make the necessary changes and ensure that the tests are passing using `npm testP 
+3. Make the necessary changes and ensure that the tests are passing using `npm test`
 4. Send a pull request
