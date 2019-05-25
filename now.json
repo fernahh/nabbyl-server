@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "name": "nabbyl-server",
+  "builds": [
+    { 
+      "src": "src/server.js", 
+      "use": "@now/node-server" 
+    }
+  ],
+  "env": {
+    "PORT": "@nabbyl-server-port",
+    "SPOTIFY_API_URL": "@nabbyl-server-spotify-api-url",
+    "SPOTIFY_AUTHORIZE_URL": "@nabbyl-server-spotify-authorize-url",
+    "SPOTIFY_CLIENT_ID": "@nabbyl-server-spotify-client-id",
+    "SPOTIFY_CLIENT_SECRET": "@nabbyl-server-spotify-client-secret",
+    "SPOTIFY_STATE_KEY": "@nabbyl-server-spotify-state-key",
+    "SPOTIFY_AUTHORIZE_CALLBACK_URL": "@nabbyl-server-spotify-authorize-callback-url",
+    "SPOTIFY_AUTHORIZE_TOKEN_URL": "@nabbyl-server-spotify-authorize-token-url",
+    "WEB_CLIENT_URL": "@nabbyl-server-web-client-url",
+    "WEB_CLIENT_REDIRECT_URL": "@nabbyl-server-web-client-redirect-url"
+  },
+  "routes": [
+    { 
+      "src": "/auth", 
+      "dest": "/src/server.js" 
+    },
+    { 
+      "src": "/auth/callback/(.*)", 
+      "dest": "/src/server.js" 
+    },
+    { 
+      "src": "/albums", 
+      "dest": "/src/server.js" 
+    },
+    { 
+      "src": "/me", 
+      "dest": "/src/server.js"
+    }
+  ]
+}
