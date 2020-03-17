@@ -17,18 +17,18 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "get-image-colors": "^1.8.1",
-    "nanoid": "^2.1.8"
+    "nanoid": "^2.1.11"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^3.6.0",
-    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-prettier": "^3.1.2",
-    "jest": "^24.9.0",
+    "jest": "^25.1.0",
     "prettier": "1.15.3"
   },
   "engines": {
-    "node": "12.x" 
+    "node": "12.x"
   }
 }
